@@ -1,18 +1,11 @@
 import { Hono } from 'hono'
-import { getCookie, getSignedCookie, setCookie, setSignedCookie, deleteCookie } from 'hono/cookie'
+import authRoutes from './routes/auth'
+import 'dotenv/config'
+import db from './database'
 
+db()
 const app = new Hono()
-
-app.get('/', (c) => {
-  setCookie(c, 'user', '239482934jdksfjsdf')
-  return c.text('Hello Hono!')
-})
-
-app.get('/try', (c) => {
-  const user = getCookie(c, 'user')
-  console.log(user)
-  return c.text('Hello Hono!')
-})
+app.route('/auth', authRoutes)
 
 export default {
   port: 4000,

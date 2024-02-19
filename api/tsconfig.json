@@ -1,7 +1,29 @@
 {
   "compilerOptions": {
+    "target": "es5", // or a more recent target like "es2017" if you want to use more modern JavaScript features
+    "module": "commonjs", // this should be set to "commonjs" for Node.js projects
     "strict": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
-  }
+    "jsxImportSource": "hono/jsx",
+    "esModuleInterop": true,
+    "moduleResolution": "node", // this helps TypeScript understand how to resolve node modules
+    "outDir": "./dist", // where to put the compiled JavaScript files
+    "types": [
+      "node"
+    ], // this is where you specify types for node, you can add "mongoose" if you want TypeScript to pick up mongoose types
+    "typeRoots": [
+      "./node_modules/@types"
+    ], // this tells TypeScript where to find type definitions
+    "lib": [
+      "es2017",
+      "dom"
+    ] // if you're using features from more recent ECMAScript versions, specify them here
+  },
+  "include": [
+    "./src/**/*" // adjust this to point to where your TypeScript source files are located
+  ],
+  "exclude": [
+    "node_modules", // you typically want to exclude node_modules from TypeScript compilation
+    "./dist" // and wherever your compiled JavaScript files are going
+  ]
 }
